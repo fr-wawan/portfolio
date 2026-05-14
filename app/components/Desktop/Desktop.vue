@@ -15,7 +15,7 @@ const highestZindex = ref(1);
 const showMatrix = ref(false);
 const showWidgets = ref(true);
 
-const desktopRef = ref(null);
+const desktopRef = useTemplateRef("desktopRef");
 const hasAutoLaunchedRef = ref(false);
 
 const desktopIcons = [
@@ -115,12 +115,43 @@ function updateWindowState(id: string, state: Partial<WindowState>) {
     window.id === id ? { ...window, ...state } : window,
   );
 }
+
+function handleContextMenuAction(action: string) {
+  contextMenu.value = null;
+
+  if (action === "about") {
+    openWindow("about");
+  } else if (action === "terminal") {
+    openWindow("terminal");
+  } else if (action === "refresh") {
+    if (desktopRef.value) {
+      desktopRef.value.style.opacity = "0.8";
+      setTimeout(() => {
+        if (desktopRef.value) {
+          desktopRef.value.style.opacity = "1";
+        }
+      }, 100);
+    }
+  }
+}
+
+function handleContextMenu(e: MouseEvent) {
+  contextMenu.value = { x: e.clientX, y: e.clientY };
+}
+
+function handleDesktopClick() {
+  contextMenu.value = null;
+}
 </script>
 
 <template>
   <div
     class="h-screen w-screen overflow-hidden relative transition-opacity bg-[#0a0a14]"
+    ref="desktopRef"
+    @contextmenu.prevent="handleContextMenu"
+    @click="handleDesktopClick"
   >
+    <DesktopAnimatedWallpaper />
     <div class="absolute top-4 left-4 flex flex-col gap-4 z-10">
       <DesktopIcon
         v-for="icon in desktopIcons"
@@ -141,5 +172,14 @@ function updateWindowState(id: string, state: Partial<WindowState>) {
         @openWindow="openWindow"
       />
     </div>
+
+    <DesktopContextMenu
+      v-if="contextMenu"
+      :x="contextMenu.x"
+      :y="contextMenu.y"
+      @close="contextMenu = null"
+      @click.stop
+      @action="handleContextMenuAction"
+    />
   </div>
 </template>
