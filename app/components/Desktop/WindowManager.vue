@@ -21,8 +21,10 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <template v-for="win in windows" :key="win.id">
+  <TransitionGroup name="window-open" tag="div" class="contents" appear>
     <DesktopWindow
+      v-for="win in windows"
+      :key="win.id"
       :id="win.id"
       :title="win.title"
       :is-minimized="win.isMinimized"
@@ -45,5 +47,24 @@ const emit = defineEmits<{
 
       <div v-else class="p-4 text-zinc-400">Unknown application</div>
     </DesktopWindow>
-  </template>
+  </TransitionGroup>
 </template>
+
+<style scoped>
+.window-open-enter-active,
+.window-open-leave-active {
+  transition: opacity 0.16s ease, transform 0.18s ease;
+}
+
+.window-open-enter-from,
+.window-open-leave-to {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+}
+
+.window-open-enter-to,
+.window-open-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+</style>

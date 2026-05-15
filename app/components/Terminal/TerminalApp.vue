@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { TERMINAL_AUTOCOMPLETE_COMMANDS } from "~/config/terminal";
+
 const props = defineProps<{
   initialCommand?: string;
 }>();
@@ -18,21 +20,6 @@ const { execute } = useCommandRegistry((event, payload) => {
 const currentDir = ref("~");
 const containerRef = useTemplateRef("containerRef");
 const promptRef = useTemplateRef("promptRef");
-
-const AUTOCOMPLETE_COMMANDS = [
-  "whoami",
-  "ls",
-  "cat",
-  "neofetch",
-  "help",
-  "clear",
-  "echo",
-  "cd",
-  "sudo",
-  "fortune",
-  "cowsay",
-  "matrix",
-];
 
 function handleSubmit(input: string) {
   const trimmed = input.trim();
@@ -54,7 +41,7 @@ function handleNavigate(direction: "up" | "down") {
 }
 
 function handleAutocomplete(current: string) {
-  const matches = AUTOCOMPLETE_COMMANDS.filter((c) =>
+  const matches = TERMINAL_AUTOCOMPLETE_COMMANDS.filter((c) =>
     c.startsWith(current.toLowerCase()),
   );
   if (matches.length === 1) {

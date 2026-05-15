@@ -2,13 +2,7 @@
 import { Grid3X3 } from "lucide-vue-next";
 import { apps } from "~/config/apps";
 import type { AppType } from "~/config/apps";
-
-interface AppWindow {
-  id: string;
-  type: AppType;
-  title: string;
-  isMinimized: boolean;
-}
+import type { AppWindow } from "~/types/desktop";
 
 const props = defineProps<{
   windows: AppWindow[];
@@ -48,7 +42,6 @@ const launcherApps = Object.entries(apps)
 </script>
 
 <template>
-  <!-- App Launcher Overlay -->
   <Transition name="launcher">
     <div
       v-if="showLauncher"
@@ -80,11 +73,9 @@ const launcherApps = Object.entries(apps)
     </div>
   </Transition>
 
-  <!-- Taskbar -->
   <div
     class="fixed bottom-0 left-0 right-0 h-12 bg-zinc-900/95 border-t border-zinc-700 flex items-center px-2 z-50"
   >
-    <!-- App Launcher Button -->
     <button
       class="h-9 w-9 flex items-center justify-center rounded hover:bg-zinc-700/50 transition-colors"
       @click="showLauncher = !showLauncher"
@@ -92,10 +83,8 @@ const launcherApps = Object.entries(apps)
       <Grid3X3 class="w-5 h-5 text-zinc-300" />
     </button>
 
-    <!-- Separator -->
     <div class="w-px h-6 bg-zinc-700 mx-2" />
 
-    <!-- Running Apps -->
     <div class="flex-1 flex items-center gap-1 overflow-x-auto">
       <button
         v-for="win in windows"
@@ -115,7 +104,6 @@ const launcherApps = Object.entries(apps)
       </button>
     </div>
 
-    <!-- System Tray / Clock -->
     <div class="flex items-center gap-3 px-3">
       <div class="text-right">
         <div class="text-xs text-zinc-200">{{ formatTime(time) }}</div>
