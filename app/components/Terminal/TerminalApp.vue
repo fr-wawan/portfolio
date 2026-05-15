@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const props = defineProps<{
+  initialCommand?: string;
+}>();
+
 const emit = defineEmits<{
   "matrix-mode": [];
   "open-app": [type: string];
@@ -66,7 +70,12 @@ function scrollToBottom() {
   });
 }
 
-onMounted(() => promptRef.value?.focus());
+onMounted(() => {
+  promptRef.value?.focus();
+  if (props.initialCommand) {
+    handleSubmit(props.initialCommand);
+  }
+});
 </script>
 
 <template>

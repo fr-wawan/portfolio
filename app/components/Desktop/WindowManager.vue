@@ -21,7 +21,6 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  tes
   <template v-for="win in windows" :key="win.id">
     <DesktopWindow
       :id="win.id"
