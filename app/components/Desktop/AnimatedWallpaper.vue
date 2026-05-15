@@ -27,7 +27,6 @@ onMounted(() => {
   let w = 0;
   let h = 0;
 
-  // ─── Nebula (digambar sekali, reused tiap frame) ───────────────────────────
   function buildNebulaCanvas() {
     const nc = document.createElement("canvas");
     nc.width = w;
@@ -51,8 +50,8 @@ onMounted(() => {
     return nc;
   }
 
-  // ─── Init ──────────────────────────────────────────────────────────────────
   function resize() {
+    if (!canvas || !ctx) return;
     const dpr = window.devicePixelRatio || 1;
     w = window.innerWidth;
     h = window.innerHeight;
@@ -71,7 +70,7 @@ onMounted(() => {
       z: z ?? Math.random() * w,
       px: 0,
       py: 0,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      color: COLORS[Math.floor(Math.random() * COLORS.length)] ?? "",
     };
   }
 
@@ -79,17 +78,16 @@ onMounted(() => {
     stars = Array.from({ length: STAR_COUNT }, () => spawnStar());
   }
 
-  // ─── Animation loop ────────────────────────────────────────────────────────
   function animate() {
+    if (!ctx) return;
+
     const cx = w / 2;
     const cy = h / 2;
     const maxDepth = w;
 
-    // Background
     ctx.fillStyle = "#06060f";
     ctx.fillRect(0, 0, w, h);
 
-    // Nebula layer (pre-rendered, cheap)
     if (nebulaCanvas) ctx.drawImage(nebulaCanvas, 0, 0);
 
     // Fade trail: semitransparent overlay instead of full clear
@@ -98,8 +96,11 @@ onMounted(() => {
 
     for (let i = 0; i < stars.length; i++) {
       const star = stars[i];
-      const prevSx = star.px;
-      const prevSy = star.py;
+
+      if (!star) return;
+
+      const prevSx = star?.px;
+      const prevSy = star?.py;
 
       star.z -= SPEED;
 
@@ -144,7 +145,6 @@ onMounted(() => {
     animationId = requestAnimationFrame(animate);
   }
 
-  // ─── Lifecycle ─────────────────────────────────────────────────────────────
   function handleResize() {
     resize();
     initStars();
