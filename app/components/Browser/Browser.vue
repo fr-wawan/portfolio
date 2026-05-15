@@ -40,12 +40,11 @@ const isPublic = computed(
 
 <template>
   <div class="h-full flex flex-col bg-zinc-900">
-    <!-- Toolbar -->
     <div
-      class="h-12 bg-zinc-800 border-b border-zinc-700 flex items-center px-3 gap-2 shrink-0"
+      class="bg-zinc-800 border-b border-zinc-700 flex flex-wrap items-center px-2 sm:px-3 py-2 gap-2 shrink-0"
     >
       <button
-        class="p-2 rounded hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        class="p-1.5 sm:p-2 rounded hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         disabled
       >
         <svg
@@ -59,7 +58,7 @@ const isPublic = computed(
         </svg>
       </button>
       <button
-        class="p-2 rounded hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        class="p-1.5 sm:p-2 rounded hover:bg-zinc-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         disabled
       >
         <svg
@@ -73,7 +72,7 @@ const isPublic = computed(
         </svg>
       </button>
       <button
-        class="p-2 rounded hover:bg-zinc-700 transition-colors"
+        class="p-1.5 sm:p-2 rounded hover:bg-zinc-700 transition-colors"
         @click="selectProject(activeId)"
       >
         <svg
@@ -90,9 +89,8 @@ const isPublic = computed(
         </svg>
       </button>
 
-      <!-- URL bar -->
       <div
-        class="flex-1 flex items-center gap-2 px-3 py-1.5 bg-zinc-900 rounded border border-zinc-700"
+        class="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 rounded border border-zinc-700 w-full sm:flex-1 order-last sm:order-none"
       >
         <svg
           class="w-3.5 h-3.5 shrink-0"
@@ -105,9 +103,11 @@ const isPublic = computed(
           <rect x="3" y="11" width="18" height="11" rx="2" />
           <path d="M7 11V7a5 5 0 0 1 10 0v4" />
         </svg>
-        <span class="text-sm text-zinc-400 truncate">{{ displayUrl }}</span>
+        <span class="text-xs sm:text-sm text-zinc-400 truncate">
+          {{ displayUrl }}
+        </span>
         <span
-          class="ml-auto shrink-0 text-xs font-semibold tracking-wide"
+          class="ml-auto shrink-0 text-[10px] sm:text-xs font-semibold tracking-wide"
           :class="{
             'text-red-400': (activeProject?.status ?? 'private') === 'private',
             'text-green-400': activeProject?.status === 'public',
@@ -119,14 +119,13 @@ const isPublic = computed(
       </div>
     </div>
 
-    <!-- Tab bar -->
     <div
-      class="h-9 bg-zinc-800 border-b border-zinc-700 flex items-center px-2 gap-1 overflow-x-auto shrink-0"
+      class="bg-zinc-800 border-b border-zinc-700 flex items-center px-2 py-1 gap-1 overflow-x-auto shrink-0"
     >
       <button
         v-for="project in projects"
         :key="projectKey(project)"
-        class="flex items-center gap-2 px-3 py-1.5 rounded-t text-sm transition-colors whitespace-nowrap"
+        class="flex items-center gap-2 px-3 py-1.5 rounded-t text-xs sm:text-sm transition-colors whitespace-nowrap"
         :class="
           activeId === projectKey(project)
             ? 'bg-zinc-900 text-zinc-100'
@@ -135,11 +134,10 @@ const isPublic = computed(
         @click="selectProject(projectKey(project))"
       >
         <span>{{ "🌐" }}</span>
-        <span class="truncate max-w-28">{{ project.name }}</span>
+        <span class="truncate max-w-24 sm:max-w-40">{{ project.name }}</span>
       </button>
     </div>
 
-    <!-- Empty state -->
     <div
       v-if="!activeProject"
       class="flex-1 flex items-center justify-center bg-zinc-950"
@@ -147,7 +145,6 @@ const isPublic = computed(
       <p class="text-sm text-zinc-600">No project selected</p>
     </div>
 
-    <!-- Content -->
     <div v-else class="flex-1 bg-zinc-950 relative overflow-hidden">
       <Transition
         enter-active-class="transition-all duration-200"

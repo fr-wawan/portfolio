@@ -59,6 +59,8 @@ const emit = defineEmits<{
 
       <TextEditor v-else-if="props.appId === 'editor'" />
 
+      <Browser v-else-if="props.appId === 'browser'" />
+
       <div
         v-else-if="props.appId === 'contact'"
         class="h-full bg-zinc-900 p-6 overflow-auto"

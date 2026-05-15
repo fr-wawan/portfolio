@@ -17,7 +17,6 @@ function onError() {
 
 <template>
   <div class="relative w-full h-full bg-zinc-950">
-    <!-- Loading overlay -->
     <Transition
       enter-active-class="transition-opacity duration-200"
       leave-active-class="transition-opacity duration-300"
@@ -37,13 +36,14 @@ function onError() {
       </div>
     </Transition>
 
-    <!-- Error state -->
     <div
       v-if="iframeError"
-      class="flex h-full flex-col items-center justify-center gap-3 font-mono"
+      class="flex h-full flex-col items-center justify-center gap-3 px-6 text-center font-mono"
     >
       <span class="text-3xl">🌐</span>
-      <p class="text-[14px] text-zinc-200">Couldn't load live preview</p>
+      <p class="text-[13px] sm:text-[14px] text-zinc-200">
+        Couldn't load live preview
+      </p>
       <p class="text-[12px] text-zinc-600">
         The site may block embedding. Visit directly instead.
       </p>
@@ -57,7 +57,6 @@ function onError() {
       </a>
     </div>
 
-    <!-- Iframe -->
     <iframe
       v-if="!iframeError"
       :src="project.liveUrl"

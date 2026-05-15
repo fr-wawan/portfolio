@@ -15,9 +15,8 @@ const tabs: { id: Tab; label: string }[] = [
 </script>
 
 <template>
-  <div class="h-full overflow-auto p-8 bg-zinc-950">
+  <div class="h-full overflow-auto p-4 sm:p-8 bg-zinc-950">
     <div class="max-w-2xl mx-auto flex flex-col gap-6">
-      <!-- ERR banner -->
       <div
         class="flex items-center gap-3 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3"
       >
@@ -43,13 +42,12 @@ const tabs: { id: Tab; label: string }[] = [
         </span>
       </div>
 
-      <!-- Project header -->
       <div class="text-center">
-        <h1 class="text-3xl font-bold text-zinc-100 mb-2">
+        <h1 class="text-2xl sm:text-3xl font-bold text-zinc-100 mb-2">
           {{ project.name }}
         </h1>
         <p class="text-zinc-400">{{ project.desc }}</p>
-        <div class="flex items-center justify-center gap-2 mt-3">
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-3">
           <span
             v-if="project.role"
             class="text-xs text-zinc-400 bg-zinc-800 border border-zinc-700 rounded px-2 py-1"
@@ -65,12 +63,11 @@ const tabs: { id: Tab; label: string }[] = [
         </div>
       </div>
 
-      <!-- Tabs -->
-      <div class="flex gap-1 border-b border-zinc-700">
+      <div class="flex flex-wrap gap-1 border-b border-zinc-700">
         <button
           v-for="tab in tabs"
           :key="tab.id"
-          class="px-4 py-2 text-sm border-b-2 -mb-px transition-colors"
+          class="px-3 sm:px-4 py-2 text-sm border-b-2 -mb-px transition-colors whitespace-nowrap"
           :class="
             activeTab === tab.id
               ? 'text-zinc-100 border-white'
@@ -103,7 +100,7 @@ const tabs: { id: Tab; label: string }[] = [
         </div>
 
         <!-- Screenshots -->
-        <div v-else class="grid grid-cols-2 gap-4">
+        <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div
             v-for="(ss, i) in project.screenshots"
             :key="i"
@@ -123,7 +120,7 @@ const tabs: { id: Tab; label: string }[] = [
 
       <!-- Stack -->
       <template v-else-if="activeTab === 'stack'">
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <div
             v-for="tech in project.techDetail ??
             project.tech.map((t) => ({ name: t, color: '#52525b' }))"
@@ -165,8 +162,7 @@ const tabs: { id: Tab; label: string }[] = [
         <p v-else class="text-sm text-zinc-600">No highlights added yet.</p>
       </template>
 
-      <!-- Footer actions -->
-      <div class="flex gap-4 pt-2 border-t border-zinc-700">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 border-t border-zinc-700">
         <a
           v-if="project.githubUrl"
           :href="project.githubUrl"
