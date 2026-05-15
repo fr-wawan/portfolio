@@ -6,12 +6,21 @@ defineProps<{ project: Project }>();
 
 type Tab = "overview" | "stack" | "highlights";
 const activeTab = ref<Tab>("overview");
+const activeScreenshot = ref<null | { src: string; alt?: string }>(null);
 
 const tabs: { id: Tab; label: string }[] = [
   { id: "overview", label: "Overview" },
   { id: "stack", label: "Tech Stack" },
   { id: "highlights", label: "Highlights" },
 ];
+
+function openScreenshot(src: string, alt?: string) {
+  activeScreenshot.value = { src, alt };
+}
+
+function closeScreenshot() {
+  activeScreenshot.value = null;
+}
 </script>
 
 <template>
@@ -97,7 +106,7 @@ const tabs: { id: Tab; label: string }[] = [
 
             <div
               v-if="!project.screenshots || project.screenshots.length === 0"
-              class="aspect-video bg-zinc-800 rounded-lg flex flex-col items-center justify-center gap-2 border border-zinc-700"
+              class="aspect-video bg-zinc-800 rounded-lg flex flex-col items-center justify-center gap-2 border border-zinc-700 mt-5"
             >
               <span class="text-3xl opacity-30">
                 <Lock class="text-white" />
@@ -107,18 +116,29 @@ const tabs: { id: Tab; label: string }[] = [
               </p>
             </div>
 
-            <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div v-else class="grid grid-cols-1 gap-4 mt-5">
               <div
                 v-for="(ss, i) in project.screenshots"
                 :key="i"
                 class="flex flex-col gap-2"
               >
-                <img
-                  :src="ss.src"
-                  :alt="ss.alt"
-                  class="w-full rounded-lg border border-zinc-700"
-                />
-                <p v-if="ss.caption" class="text-xs text-zinc-600 text-center">
+                <button
+                  class="group relative overflow-hidden rounded-lg border border-zinc-700"
+                  @click="openScreenshot(ss.src, ss.alt)"
+                >
+                  <img
+                    :src="ss.src"
+                    :alt="ss.alt"
+                    class="w-full transition-transform duration-200 group-hover:scale-[1.02]"
+                  />
+                  <div
+                    class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"
+                  />
+                </button>
+                <p
+                  v-if="ss.caption"
+                  class="text-white text-center text-zinc-400 text-sm"
+                >
                   {{ ss.caption }}
                 </p>
               </div>
@@ -136,7 +156,8 @@ const tabs: { id: Tab; label: string }[] = [
                 <span
                   class="size-2.5 rounded-full shrink-0"
                   :style="{
-                    background: typeof tech === 'string' ? '#52525b' : tech.color,
+                    background:
+                      typeof tech === 'string' ? '#52525b' : tech.color,
                   }"
                 />
                 <span class="text-sm text-zinc-300 truncate">
@@ -161,7 +182,9 @@ const tabs: { id: Tab; label: string }[] = [
                 >
                   {{ String(i + 1).padStart(2, "0") }}
                 </span>
-                <span class="text-sm text-zinc-400 leading-relaxed">{{ h }}</span>
+                <span class="text-sm text-zinc-400 leading-relaxed">{{
+                  h
+                }}</span>
               </div>
             </div>
             <p v-else class="text-sm text-zinc-600">No highlights added yet.</p>
@@ -169,7 +192,9 @@ const tabs: { id: Tab; label: string }[] = [
         </div>
       </Transition>
 
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 border-t border-zinc-700">
+      <div
+        class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 border-t border-zinc-700"
+      >
         <a
           v-if="project.githubUrl"
           :href="project.githubUrl"
@@ -197,4 +222,23 @@ const tabs: { id: Tab; label: string }[] = [
       </div>
     </div>
   </div>
+
+  <Transition
+    enter-active-class="transition-opacity duration-150"
+    leave-active-class="transition-opacity duration-150"
+    enter-from-class="opacity-0"
+    leave-to-class="opacity-0"
+  >
+    <div
+      v-if="activeScreenshot"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+      @click="closeScreenshot"
+    >
+      <img
+        :src="activeScreenshot.src"
+        :alt="activeScreenshot.alt ?? ''"
+        class="max-h-[90vh] max-w-[90vw] rounded-lg border border-zinc-700"
+      />
+    </div>
+  </Transition>
 </template>

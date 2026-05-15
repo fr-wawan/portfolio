@@ -50,6 +50,49 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
+      name: "PulseBoard",
+      desc: "CRM & sales analytics platform with order management, revenue dashboard, and customer analytics",
+      tech: ["Laravel", "Vue.js", "PostgreSQL"],
+
+      id: "pulseboard",
+      status: "private",
+      url: "https://pulseboard.client.id",
+      role: "Full Stack Developer",
+      period: "2024",
+      longDescription:
+        "CRM and sales analytics platform. Features a real-time revenue dashboard, customer segmentation, and analytics powered by optimized PostgreSQL aggregation queries.",
+      techDetail: [
+        { name: "Laravel", color: "#FF2D20" },
+        { name: "Vue.js", color: "#42B883" },
+        { name: "PostgreSQL", color: "#336791" },
+        { name: "Chart.js", color: "#FF6384" },
+      ],
+      highlights: [
+        "Dashboard handles 2,000+ order records with paginated + indexed queries",
+        "Revenue analytics with date range filters and CSV export",
+        "Customer segmentation by purchase behavior and region",
+        "PostgreSQL window functions for YoY and MoM comparisons",
+      ],
+      screenshots: [
+        {
+          src: "/images/pulseboard/pulseboard-1.png",
+          caption: "Dashboard",
+        },
+        {
+          src: "/images/pulseboard/pulseboard-2.png",
+          caption: "Landing Page",
+        },
+        {
+          src: "/images/pulseboard/pulseboard-3.png",
+          caption: "Order Page",
+        },
+        {
+          src: "/images/pulseboard/pulseboard-4.png",
+          caption: "Create Order Page",
+        },
+      ],
+    },
+    {
       name: "SIMRS",
       desc: "Hospital Information System with LIS integration, RBAC, and optimized PostgreSQL queries for high-volume healthcare data",
       tech: ["Laravel", "Vue.js", "PostgreSQL"],
@@ -65,13 +108,78 @@ export const PORTFOLIO_DATA = {
         { name: "Laravel", color: "#FF2D20" },
         { name: "Vue.js", color: "#42B883" },
         { name: "PostgreSQL", color: "#336791" },
-        { name: "Spatie RBAC", color: "#F59E0B" },
       ],
       highlights: [
         "LIS integration — lab results sync directly into patient records",
         "RBAC with Spatie — granular permissions per medical role",
         "Optimized N+1 queries across high-volume patient data endpoints",
         "Real-time bed occupancy dashboard with WebSocket updates",
+      ],
+      screenshots: [],
+    },
+    {
+      name: "Plannify",
+      desc: "Project management & Kanban tool with drag-and-drop board, time tracking, sub-tasks, and multi-workspace support",
+      tech: ["Laravel", "Nuxt.js", "TypeScript"],
+
+      id: "plannify",
+      status: "private",
+      url: "https://plannify.dev",
+      role: "Full Stack Developer (Personal)",
+      period: "2025 – Present",
+      longDescription:
+        "Personal SaaS side project — a project management tool with Kanban boards, time tracking, sub-tasks, and multi-workspace support.",
+      techDetail: [
+        { name: "Laravel", color: "#FF2D20" },
+        { name: "Nuxt.js", color: "#00DC82" },
+        { name: "TypeScript", color: "#3178C6" },
+        { name: "PostgreSQL", color: "#336791" },
+      ],
+      highlights: [
+        "Drag-and-drop Kanban with optimistic UI updates",
+        "Time tracking per task with billable hours reporting",
+        "Sub-task tree with recursive depth support",
+        "Multi-workspace with role-based member access",
+      ],
+      screenshots: [
+        {
+          src: "/images/plannify/plannify-1.png",
+          caption: "Dashboard",
+        },
+        {
+          src: "/images/plannify/plannify-2.png",
+          caption: "Landing Page",
+        },
+        {
+          src: "/images/plannify/plannify-3.png",
+          caption: "Detail Card Page",
+        },
+      ],
+    },
+    {
+      name: "Kelasin",
+      desc: "Full-featured LMS with enrollment workflows, scheduling, payment processing, and rating system",
+      tech: ["Laravel", "Inertia.js", "React"],
+
+      id: "lms",
+      status: "public",
+      url: "https://kelasin.com",
+      liveUrl: "https://kelasin.com",
+      role: "Full Stack Developer",
+      period: "2025",
+      longDescription:
+        "Learning Management System with full enrollment lifecycle, course scheduling, payment processing, and a student rating system. Built with Inertia.js for SPA-like UX without the API overhead.",
+      techDetail: [
+        { name: "Laravel", color: "#FF2D20" },
+        { name: "Inertia.js", color: "#9333EA" },
+        { name: "Vue", color: "#61DAFB" },
+        { name: "MySQL", color: "#2563EB" },
+      ],
+      highlights: [
+        "SSR-friendly SPA with Inertia.js — no separate API layer",
+        "Enrollment workflow with waitlist, approval, and expiry logic",
+        "Payment processing with installment support",
+        "Course rating and review system with instructor reply threads",
       ],
       screenshots: [],
     },
@@ -102,32 +210,6 @@ export const PORTFOLIO_DATA = {
       screenshots: [],
     },
     {
-      name: "Online Course Platform",
-      desc: "Full-featured LMS with enrollment workflows, scheduling, payment processing, and rating system",
-      tech: ["Laravel", "Inertia.js", "React"],
-
-      id: "lms",
-      status: "private",
-      url: "https://lms.client.id",
-      role: "Full Stack Developer",
-      period: "2025",
-      longDescription:
-        "Learning Management System with full enrollment lifecycle, course scheduling, payment processing, and a student rating system. Built with Inertia.js for SPA-like UX without the API overhead.",
-      techDetail: [
-        { name: "Laravel", color: "#FF2D20" },
-        { name: "Inertia.js", color: "#9333EA" },
-        { name: "React", color: "#61DAFB" },
-        { name: "MySQL", color: "#2563EB" },
-      ],
-      highlights: [
-        "SSR-friendly SPA with Inertia.js — no separate API layer",
-        "Enrollment workflow with waitlist, approval, and expiry logic",
-        "Payment processing with installment support",
-        "Course rating and review system with instructor reply threads",
-      ],
-      screenshots: [],
-    },
-    {
       name: "HRIS Multi-Tenant",
       desc: "Production multi-tenant HR system with payroll, attendance, employee management, and Vue.js migration from jQuery",
       tech: ["Laravel", "Vue.js", "MySQL"],
@@ -136,7 +218,7 @@ export const PORTFOLIO_DATA = {
       status: "private",
       url: "https://hris.client.id",
       role: "Full Stack Developer",
-      period: "2023 – 2025",
+      period: "2023 – 2026",
       longDescription:
         "Production multi-tenant HRIS serving multiple companies from a single instance. Covers payroll calculation, attendance tracking, leave management, and a full migration from legacy jQuery to Vue.js SPA.",
       techDetail: [
@@ -150,58 +232,6 @@ export const PORTFOLIO_DATA = {
         "Payroll engine with configurable components, cuts, and tax calculation",
         "Attendance system with shift scheduling and overtime rules",
         "Full jQuery → Vue.js SPA migration without downtime",
-      ],
-      screenshots: [],
-    },
-    {
-      name: "PulseBoard",
-      desc: "CRM & sales analytics platform with order management, revenue dashboard, and customer analytics",
-      tech: ["Laravel", "Vue.js", "PostgreSQL"],
-
-      id: "pulseboard",
-      status: "private",
-      url: "https://pulseboard.client.id",
-      role: "Full Stack Developer",
-      period: "2024",
-      longDescription:
-        "CRM and sales analytics platform. Features a real-time revenue dashboard, customer segmentation, and analytics powered by optimized PostgreSQL aggregation queries.",
-      techDetail: [
-        { name: "Laravel", color: "#FF2D20" },
-        { name: "Vue.js", color: "#42B883" },
-        { name: "PostgreSQL", color: "#336791" },
-        { name: "Chart.js", color: "#FF6384" },
-      ],
-      highlights: [
-        "Dashboard handles 2,000+ order records with paginated + indexed queries",
-        "Revenue analytics with date range filters and CSV export",
-        "Customer segmentation by purchase behavior and region",
-        "PostgreSQL window functions for YoY and MoM comparisons",
-      ],
-      screenshots: [],
-    },
-    {
-      name: "Plannify",
-      desc: "Project management & Kanban tool with drag-and-drop board, time tracking, sub-tasks, and multi-workspace support",
-      tech: ["Laravel", "Nuxt.js", "TypeScript"],
-
-      id: "plannify",
-      status: "private",
-      url: "https://plannify.dev",
-      role: "Full Stack Developer (Personal)",
-      period: "2025 – Present",
-      longDescription:
-        "Personal SaaS side project — a project management tool with Kanban boards, time tracking, sub-tasks, and multi-workspace support. Currently in active development.",
-      techDetail: [
-        { name: "Laravel", color: "#FF2D20" },
-        { name: "Nuxt.js", color: "#00DC82" },
-        { name: "TypeScript", color: "#3178C6" },
-        { name: "PostgreSQL", color: "#336791" },
-      ],
-      highlights: [
-        "Drag-and-drop Kanban with optimistic UI updates",
-        "Time tracking per task with billable hours reporting",
-        "Sub-task tree with recursive depth support",
-        "Multi-workspace with role-based member access",
       ],
       screenshots: [],
     },
