@@ -57,6 +57,8 @@ const emit = defineEmits<{
 
       <FileManager v-else-if="props.appId === 'files'" />
 
+      <TextEditor v-else-if="props.appId === 'editor'" />
+
       <div
         v-else-if="props.appId === 'contact'"
         class="h-full bg-zinc-900 p-6 overflow-auto"

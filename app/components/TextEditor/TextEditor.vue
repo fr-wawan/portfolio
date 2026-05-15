@@ -117,18 +117,19 @@ function getLineClass(line: string): string {
 
     <!-- Status Bar -->
     <div
-      class="h-6 bg-zinc-800 border-t border-zinc-700 flex items-center px-3 text-xs text-zinc-400 shrink-0"
+      class="min-h-6 bg-zinc-800 border-t border-zinc-700 flex flex-wrap items-center gap-y-1 px-2 sm:px-3 text-[10px] sm:text-xs text-zinc-400 shrink-0"
     >
-      <span class="bg-zinc-700 px-2 py-0.5 rounded text-zinc-300 mr-3"
+      <span
+        class="bg-zinc-700 px-2 py-0.5 rounded text-zinc-300 mr-2 sm:mr-3"
         >-- NORMAL --</span
       >
-      <span>resume.txt</span>
-      <span class="mx-2">|</span>
-      <span>{{ lines.length }} lines</span>
+      <span class="truncate max-w-[120px] sm:max-w-none">resume.txt</span>
+      <span class="mx-2 hidden sm:inline">|</span>
+      <span class="hidden sm:inline">{{ lines.length }} lines</span>
       <span class="flex-1" />
       <span>UTF-8</span>
-      <span class="mx-2">|</span>
-      <span>LF</span>
+      <span class="mx-2 hidden sm:inline">|</span>
+      <span class="hidden sm:inline">LF</span>
     </div>
   </div>
 </template>

@@ -52,6 +52,7 @@ const emit = defineEmits<{
       />
 
       <TextEditor v-if="win.type === 'editor'" />
+      <Browser v-if="win.type === 'browser'" />
 
       <div v-else class="p-4 text-zinc-400">Unknown application</div>
     </DesktopWindow>
