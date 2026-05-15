@@ -31,7 +31,7 @@ const iconMap: Record<MobileAppId, unknown> = {
 </script>
 
 <template>
-  <div class="h-screen w-screen flex flex-col relative overflow-hidden">
+  <div class="min-h-[100dvh] w-screen flex flex-col relative overflow-hidden">
     <MobileAnimatedBackground />
 
     <MobileStatusBar :time="props.time" />

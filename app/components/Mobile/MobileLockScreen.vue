@@ -17,7 +17,7 @@ const emit = defineEmits<{
 
 <template>
   <div
-    class="h-screen w-screen flex flex-col items-center justify-center relative overflow-hidden"
+    class="min-h-[100dvh] w-screen flex flex-col items-center justify-center relative overflow-hidden"
     @click="emit('unlock')"
     @touchstart="emit('touchStart', $event)"
     @touchmove="emit('touchMove', $event)"

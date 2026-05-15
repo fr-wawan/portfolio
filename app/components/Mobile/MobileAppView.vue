@@ -15,7 +15,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="h-screen w-screen bg-zinc-900 flex flex-col">
+  <div class="min-h-[100dvh] w-screen bg-zinc-900 flex flex-col">
     <!-- Status Bar -->
     <div
       class="h-10 bg-zinc-950 flex items-center justify-between px-4 shrink-0"
