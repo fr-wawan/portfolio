@@ -79,88 +79,95 @@ const tabs: { id: Tab; label: string }[] = [
         </button>
       </div>
 
-      <template v-if="activeTab === 'overview'">
-        <p
-          v-if="project.longDescription"
-          class="text-sm text-zinc-400 leading-relaxed"
-        >
-          {{ project.longDescription }}
-        </p>
-
-        <div
-          v-if="!project.screenshots || project.screenshots.length === 0"
-          class="aspect-video bg-zinc-800 rounded-lg flex flex-col items-center justify-center gap-2 border border-zinc-700"
-        >
-          <span class="text-3xl opacity-30">
-            <Lock class="text-white" />
-          </span>
-          <p class="text-sm text-zinc-600">
-            Screenshots unavailable — client confidentiality
-          </p>
-        </div>
-
-        <!-- Screenshots -->
-        <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div
-            v-for="(ss, i) in project.screenshots"
-            :key="i"
-            class="flex flex-col gap-2"
-          >
-            <img
-              :src="ss.src"
-              :alt="ss.alt"
-              class="w-full rounded-lg border border-zinc-700"
-            />
-            <p v-if="ss.caption" class="text-xs text-zinc-600 text-center">
-              {{ ss.caption }}
-            </p>
-          </div>
-        </div>
-      </template>
-
-      <!-- Stack -->
-      <template v-else-if="activeTab === 'stack'">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <div
-            v-for="tech in project.techDetail ??
-            project.tech.map((t) => ({ name: t, color: '#52525b' }))"
-            :key="typeof tech === 'string' ? tech : tech.name"
-            class="flex items-center gap-2.5 rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-3 hover:border-zinc-500 transition-colors"
-          >
-            <span
-              class="size-2.5 rounded-full shrink-0"
-              :style="{
-                background: typeof tech === 'string' ? '#52525b' : tech.color,
-              }"
-            />
-            <span class="text-sm text-zinc-300 truncate">
-              {{ typeof tech === "string" ? tech : tech.name }}
-            </span>
-          </div>
-        </div>
-      </template>
-
-      <!-- Highlights -->
-      <template v-else-if="activeTab === 'highlights'">
-        <div
-          v-if="project.highlights && project.highlights.length"
-          class="flex flex-col gap-3"
-        >
-          <div
-            v-for="(h, i) in project.highlights"
-            :key="i"
-            class="flex items-baseline gap-4 rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-3"
-          >
-            <span
-              class="text-xs font-bold text-blue-400 tracking-wider shrink-0 font-mono"
+      <Transition
+        enter-active-class="transition-all duration-200"
+        leave-active-class="transition-all duration-150"
+        enter-from-class="opacity-0 translate-y-1"
+        leave-to-class="opacity-0"
+        mode="out-in"
+      >
+        <div :key="activeTab">
+          <template v-if="activeTab === 'overview'">
+            <p
+              v-if="project.longDescription"
+              class="text-sm text-zinc-400 leading-relaxed"
             >
-              {{ String(i + 1).padStart(2, "0") }}
-            </span>
-            <span class="text-sm text-zinc-400 leading-relaxed">{{ h }}</span>
-          </div>
+              {{ project.longDescription }}
+            </p>
+
+            <div
+              v-if="!project.screenshots || project.screenshots.length === 0"
+              class="aspect-video bg-zinc-800 rounded-lg flex flex-col items-center justify-center gap-2 border border-zinc-700"
+            >
+              <span class="text-3xl opacity-30">
+                <Lock class="text-white" />
+              </span>
+              <p class="text-sm text-zinc-600">
+                Screenshots unavailable — client confidentiality
+              </p>
+            </div>
+
+            <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div
+                v-for="(ss, i) in project.screenshots"
+                :key="i"
+                class="flex flex-col gap-2"
+              >
+                <img
+                  :src="ss.src"
+                  :alt="ss.alt"
+                  class="w-full rounded-lg border border-zinc-700"
+                />
+                <p v-if="ss.caption" class="text-xs text-zinc-600 text-center">
+                  {{ ss.caption }}
+                </p>
+              </div>
+            </div>
+          </template>
+
+          <template v-else-if="activeTab === 'stack'">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div
+                v-for="tech in project.techDetail ??
+                project.tech.map((t) => ({ name: t, color: '#52525b' }))"
+                :key="typeof tech === 'string' ? tech : tech.name"
+                class="flex items-center gap-2.5 rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-3 hover:border-zinc-500 transition-colors"
+              >
+                <span
+                  class="size-2.5 rounded-full shrink-0"
+                  :style="{
+                    background: typeof tech === 'string' ? '#52525b' : tech.color,
+                  }"
+                />
+                <span class="text-sm text-zinc-300 truncate">
+                  {{ typeof tech === "string" ? tech : tech.name }}
+                </span>
+              </div>
+            </div>
+          </template>
+
+          <template v-else-if="activeTab === 'highlights'">
+            <div
+              v-if="project.highlights && project.highlights.length"
+              class="flex flex-col gap-3"
+            >
+              <div
+                v-for="(h, i) in project.highlights"
+                :key="i"
+                class="flex items-baseline gap-4 rounded-lg bg-zinc-800 border border-zinc-700 px-4 py-3"
+              >
+                <span
+                  class="text-xs font-bold text-blue-400 tracking-wider shrink-0 font-mono"
+                >
+                  {{ String(i + 1).padStart(2, "0") }}
+                </span>
+                <span class="text-sm text-zinc-400 leading-relaxed">{{ h }}</span>
+              </div>
+            </div>
+            <p v-else class="text-sm text-zinc-600">No highlights added yet.</p>
+          </template>
         </div>
-        <p v-else class="text-sm text-zinc-600">No highlights added yet.</p>
-      </template>
+      </Transition>
 
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 border-t border-zinc-700">
         <a

@@ -38,6 +38,8 @@ function handleContextMenuAction(action: string) {
     openWindow("about");
   } else if (action === "terminal") {
     openWindow("terminal");
+  } else if (action === "widgets") {
+    showWidgets.value = !showWidgets.value;
   } else if (action === "refresh") {
     if (desktopRef.value) {
       desktopRef.value.style.opacity = "0.8";
@@ -79,6 +81,11 @@ onMounted(() => {
         :label="icon.label"
         @click="() => openWindow(icon.type)"
       />
+    </div>
+
+    <div className="z-10" v-if="showWidgets">
+      <WidgetSystemMonitor />
+      <WidgetClock />
     </div>
     <div class="relative z-20">
       <DesktopWindowManager
