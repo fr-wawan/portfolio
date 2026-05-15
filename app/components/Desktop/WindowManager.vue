@@ -51,6 +51,8 @@ const emit = defineEmits<{
         :initial-path="win.initialPath"
       />
 
+      <TextEditor v-if="win.type === 'editor'" />
+
       <div v-else class="p-4 text-zinc-400">Unknown application</div>
     </DesktopWindow>
   </TransitionGroup>
