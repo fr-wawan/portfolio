@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Home, ChevronRight, List, Grid } from "lucide-vue-next";
+import { Home, ChevronRight, List, Grid, PanelLeft } from "lucide-vue-next";
 import type { ViewMode } from "~/composables/useFileManager";
 
 const props = defineProps<{
@@ -10,6 +10,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   navigateHome: [];
   changeViewMode: [mode: ViewMode];
+  toggleSidebar: [];
 }>();
 </script>
 
@@ -17,6 +18,13 @@ const emit = defineEmits<{
   <div
     class="h-10 bg-zinc-800 border-b border-zinc-700 flex items-center px-3 gap-2"
   >
+    <button
+      class="p-1.5 rounded hover:bg-zinc-700 transition-colors sm:hidden"
+      @click="emit('toggleSidebar')"
+    >
+      <PanelLeft class="w-4 h-4 text-zinc-400" />
+    </button>
+
     <button
       class="p-1.5 rounded hover:bg-zinc-700 transition-colors"
       @click="emit('navigateHome')"

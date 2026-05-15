@@ -12,7 +12,9 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <aside class="w-48 bg-zinc-800 border-r border-zinc-700 p-2 flex flex-col">
+  <aside
+    class="w-52 md:w-48 h-full bg-zinc-800 border-r border-zinc-700 p-2 flex flex-col"
+  >
     <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2 px-2">
       Places
     </p>

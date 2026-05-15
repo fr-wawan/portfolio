@@ -8,7 +8,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="w-1/2 border-l border-zinc-700 p-4 overflow-auto bg-zinc-850">
+  <div
+    class="w-full sm:w-1/2 border-t sm:border-t-0 sm:border-l border-zinc-700 p-4 overflow-auto bg-zinc-850"
+  >
     <h3 class="text-lg font-semibold mb-2">{{ props.file.name }}</h3>
 
     <p v-if="props.file.description" class="text-sm text-zinc-400 mb-4">
