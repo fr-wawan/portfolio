@@ -62,6 +62,7 @@ function handleDesktopClick() {
 
 onMounted(() => {
   openWindow("terminal", { initialCommand: "neofetch" });
+  openWindow("browser", { position: { x: 750, y: 80 } });
 });
 </script>
 

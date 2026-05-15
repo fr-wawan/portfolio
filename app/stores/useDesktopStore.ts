@@ -5,6 +5,14 @@ import { apps } from "~/config/apps";
 
 interface OpenWindowOptions {
   initialCommand?: string;
+  position?: {
+    x: number;
+    y: number;
+  };
+  size?: {
+    width: number;
+    height: number;
+  };
   initialPath?: string;
 }
 
@@ -33,12 +41,12 @@ export const useDesktopStore = defineStore("desktop", () => {
       isMinimized: false,
       isMaximized: false,
 
-      position: {
+      position: options?.position ?? {
         x: 100 + (windows.value.length % 5) * 30,
         y: 50 + (windows.value.length % 5) * 30,
       },
 
-      size: {
+      size: options?.size ?? {
         width: app.size.width,
         height: app.size.height,
       },
