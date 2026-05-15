@@ -25,8 +25,8 @@ export const PORTFOLIO_DATA = {
     {
       title: "Full Stack Developer",
       company: "PT Sintesa Inti Prestasi",
-      location: "Samarinda, Indonesia",
-      period: "2023 - 2025",
+      location: "Bekasi, Indonesia (Remote)",
+      period: "2023 - 2026",
       points: [
         "Developed multi-tenant HRIS system with payroll, attendance, and Vue.js migration from jQuery",
         "Built Hospital Information System (SIMRS) with LIS integration and RBAC",
