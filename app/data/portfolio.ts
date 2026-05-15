@@ -68,7 +68,7 @@ export const PORTFOLIO_DATA = {
         { name: "Chart.js", color: "#FF6384" },
       ],
       highlights: [
-        "Dashboard handles 2,000+ order records with paginated + indexed queries",
+        "Dashboard handles order records with paginated + indexed queries",
         "Revenue analytics with date range filters and CSV export",
         "Customer segmentation by purchase behavior and region",
         "PostgreSQL window functions for YoY and MoM comparisons",
