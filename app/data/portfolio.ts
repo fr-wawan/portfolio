@@ -4,8 +4,8 @@ export const PORTFOLIO_DATA = {
   role: "Full Stack Developer",
   location: "Samarinda, East Kalimantan",
   email: "hermawantan12@gmail.com",
-  github: "github.com/fr-wawan",
-  linkedin: "linkedin.com/in/hermawan-tan-aa4795319/",
+  github: "https://github.com/fr-wawan",
+  linkedin: "https://linkedin.com/in/hermawan-tan-aa4795319/",
   skills: [
     "Laravel",
     "Ruby On Rails",
@@ -37,7 +37,7 @@ export const PORTFOLIO_DATA = {
     },
     {
       name: "PulseBoard",
-      desc: "CRM & sales analytics platform with order management (2,000+ records), revenue dashboard, and customer analytics",
+      desc: "CRM & sales analytics platform with order management,  revenue dashboard, and customer analytics",
     },
     {
       name: "Plannify",

@@ -45,6 +45,12 @@ const emit = defineEmits<{
         @open-app="(type) => emit('openWindow', type as AppWindow['type'])"
       />
 
+      <FileManager
+        v-if="win.type === 'files'"
+        @open-file="emit('openWindow', 'editor')"
+        :initial-path="win.initialPath"
+      />
+
       <div v-else class="p-4 text-zinc-400">Unknown application</div>
     </DesktopWindow>
   </TransitionGroup>
@@ -53,7 +59,9 @@ const emit = defineEmits<{
 <style scoped>
 .window-open-enter-active,
 .window-open-leave-active {
-  transition: opacity 0.16s ease, transform 0.18s ease;
+  transition:
+    opacity 0.16s ease,
+    transform 0.18s ease;
 }
 
 .window-open-enter-from,

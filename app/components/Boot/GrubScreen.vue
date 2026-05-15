@@ -4,7 +4,6 @@ const emit = defineEmits<{
 }>();
 const countdown = ref(3);
 const selectedOption = ref(0);
-const isPaused = ref(false);
 
 const options = [
   "Portfolio OS GNU/Linux",
@@ -15,7 +14,6 @@ let timer: ReturnType<typeof setInterval> | null = null;
 
 function startCountdown() {
   timer = setInterval(() => {
-    if (isPaused.value) return;
     countdown.value -= 1;
     if (countdown.value <= 0) {
       stopCountdown();
@@ -31,22 +29,16 @@ function stopCountdown() {
   }
 }
 
-function pauseCountdown() {
-  isPaused.value = true;
-}
-
 function handleKeydown(event: KeyboardEvent) {
   switch (event.key) {
     case "ArrowUp":
       event.preventDefault();
-      pauseCountdown();
       selectedOption.value =
         (selectedOption.value - 1 + options.length) % options.length;
       break;
 
     case "ArrowDown":
       event.preventDefault();
-      pauseCountdown();
       selectedOption.value = (selectedOption.value + 1) % options.length;
       break;
 
@@ -56,7 +48,6 @@ function handleKeydown(event: KeyboardEvent) {
       break;
 
     default:
-      pauseCountdown();
       break;
   }
 }
@@ -102,8 +93,7 @@ onUnmounted(() => {
           Use the ↑ and ↓ keys to select which entry is highlighted.
         </div>
         <div class="mt-2 text-center text-zinc-500 text-sm">
-          Press enter to boot the selected OS, or press any key to stop the
-          countdown.
+          Press enter to boot the selected OS.
         </div>
         <div class="mt-4 text-center">
           <span class="text-zinc-400"
