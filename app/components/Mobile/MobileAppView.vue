@@ -16,26 +16,6 @@ const emit = defineEmits<{
 
 <template>
   <div class="min-h-[100dvh] w-screen bg-zinc-900 flex flex-col">
-    <!-- Status Bar -->
-    <div
-      class="h-10 bg-zinc-950 flex items-center justify-between px-4 shrink-0"
-    >
-      <span class="text-xs text-zinc-400 font-medium">{{ props.time }}</span>
-      <div class="flex items-center gap-1">
-        <div class="flex gap-0.5">
-          <div class="w-1 h-2 bg-white rounded-sm" />
-          <div class="w-1 h-3 bg-white rounded-sm" />
-          <div class="w-1 h-4 bg-white rounded-sm" />
-          <div class="w-1 h-3 bg-zinc-600 rounded-sm" />
-        </div>
-        <div
-          class="w-6 h-3 rounded-sm bg-green-500 ml-1 flex items-center justify-end pr-0.5"
-        >
-          <div class="w-0.5 h-1.5 bg-green-900 rounded-sm" />
-        </div>
-      </div>
-    </div>
-
     <!-- App Header -->
     <div
       class="h-14 bg-zinc-800/50 backdrop-blur-md flex items-center px-4 border-b border-zinc-700/50 shrink-0"

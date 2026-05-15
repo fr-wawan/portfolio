@@ -68,7 +68,7 @@ onMounted(() => {
 <template>
   <div
     ref="containerRef"
-    class="h-full bg-zinc-950 text-zinc-100 font-mono text-sm p-4 overflow-auto"
+    class="h-[100dvh] bg-zinc-950 text-zinc-100 font-mono text-sm p-4 overflow-auto"
     @click="promptRef?.focus()"
   >
     <p v-if="history.length === 0" class="text-zinc-500 mb-4">

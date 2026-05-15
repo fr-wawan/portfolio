@@ -61,7 +61,7 @@ function onError() {
       v-if="!iframeError"
       :src="project.liveUrl"
       :title="project.name"
-      class="w-full h-full border-none transition-opacity duration-300"
+      class="w-full h-[100dvh] border-none transition-opacity duration-300"
       :class="iframeLoaded ? 'opacity-100' : 'opacity-0'"
       allow="fullscreen"
       @load="onLoad"
