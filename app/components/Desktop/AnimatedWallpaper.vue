@@ -11,7 +11,7 @@ interface Star {
 const canvasRef = useTemplateRef<HTMLCanvasElement>("canvasRef");
 
 const STAR_COUNT = 180;
-const SPEED = 1.8;
+const SPEED = 0.8;
 const COLORS = ["255,255,255", "180,200,255", "255,240,180", "200,220,255"];
 
 onMounted(() => {
