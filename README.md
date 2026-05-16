@@ -7,6 +7,12 @@
 
 An interactive portfolio that mimics a desktop OS and a mobile launcher. It boots, opens apps, and presents my work, resume, and contact details through a simulated workspace.
 
+## Screenshots
+
+![Desktop workspace](public/images/desktop/desktop-1.png)
+![Mobile lock screen](public/images/desktop/desktop-2.png)
+![Mobile home screen](public/images/desktop/desktop-3.png)
+
 Live demo: https://hermawantan.com
 
 ## Table of Contents
@@ -146,9 +152,3 @@ yarn preview
 # bun
 bun run preview
 ```
-
-## Screenshots
-
-![Desktop workspace](public/images/desktop/desktop-1.png)
-![Mobile lock screen](public/images/desktop/desktop-2.png)
-![Mobile home screen](public/images/desktop/desktop-3.png)
