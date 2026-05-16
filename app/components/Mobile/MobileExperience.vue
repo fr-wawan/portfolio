@@ -49,7 +49,7 @@ function closeApp() {
 </script>
 
 <template>
-  <div class="min-h-[100dvh] w-screen bg-[#0a0a14]">
+  <div class="min-h-[100vh] w-screen bg-[#0a0a14]">
     <MobileLockScreen
       v-if="isLocked"
       :time="currentTime"
@@ -81,7 +81,9 @@ function closeApp() {
 <style scoped>
 .android-app-enter-active,
 .android-app-leave-active {
-  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 0.2s ease;
 }
 
 .android-app-enter-from {
@@ -96,7 +98,9 @@ function closeApp() {
 
 .android-unlock-enter-active,
 .android-unlock-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .android-unlock-enter-from {

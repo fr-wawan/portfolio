@@ -31,9 +31,8 @@ const iconMap: Record<MobileAppId, unknown> = {
 </script>
 
 <template>
-  <div class="min-h-[100dvh] w-screen flex flex-col relative overflow-hidden">
+  <div class="min-h-[100vh] w-screen flex flex-col relative overflow-hidden">
     <MobileAnimatedBackground />
-
 
     <div class="flex-1 flex items-center justify-center p-6 relative z-10">
       <div class="grid grid-cols-3 gap-6 max-w-sm w-full">

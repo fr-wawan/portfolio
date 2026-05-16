@@ -15,7 +15,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="min-h-[100dvh] w-screen bg-zinc-900 flex flex-col">
+  <div class="min-h-[100vh] w-screen bg-zinc-900 flex flex-col">
     <!-- App Header -->
     <div
       class="h-14 bg-zinc-800/50 backdrop-blur-md flex items-center px-4 border-b border-zinc-700/50 shrink-0"
@@ -91,13 +91,6 @@ const emit = defineEmits<{
       >
         {{ props.appLabel }} — coming soon
       </div>
-    </div>
-
-    <div class="h-8 bg-zinc-900 flex items-center justify-center shrink-0">
-      <div
-        class="w-32 h-1 bg-zinc-600 rounded-full cursor-pointer active:bg-zinc-500"
-        @click="emit('close')"
-      />
     </div>
   </div>
 </template>
